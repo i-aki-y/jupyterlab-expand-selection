@@ -52,7 +52,6 @@ const plugin: JupyterFrontEndPlugin<void> = {
         }
         const activeCell = notebook.content.activeCell;
         if (!activeCell) {
-          console.log(activeCell);
           return;
         }
         const cmEditor = activeCell.editor as CodeMirrorEditor;
