@@ -26,7 +26,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": ".git"
+        "url": "https://github.com/i-aki-y/jupyterlab-expand-selection.git"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
