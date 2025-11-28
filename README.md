@@ -58,7 +58,7 @@ This extension adds the following commands, configurable via JupyterLab's **Adva
 To install the extension, execute:
 
 ```bash
-pip install jupyterlab_expand_selection
+pip install jupyterlab-expand-selection
 ```
 
 ## Uninstall
