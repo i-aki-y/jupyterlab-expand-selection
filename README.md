@@ -4,6 +4,51 @@
 
 A JupyterLab extension that introduces expand/shrink selection commands
 
+JupyterLab extension wrapping [codemirror-expand-selection](https://www.npmjs.com/package/codemirror-expand-selection).
+Inspired by Emacs' **expand-region** and **expreg**, this extension provides commands to expand and shrink selections in CodeMirror editors inside JupyterLab.
+
+## Features
+
+This extension adds the following commands, configurable via JupyterLab's **Advanced Keyboard Shortcuts Editor**:
+
+- `jupyterlab-expand-selection:expand-selection`
+  Expand the current selection to a larger syntactic unit.
+
+- `jupyterlab-expand-selection:shrink-selection`
+  Shrink the current selection back to a smaller unit.
+
+- `jupyterlab-expand-selection:swap-anchor-head`
+  Swap the anchor and head of the current selection.
+
+
+## Usage
+
+1. Open JupyterLab.
+2. Go to Settings → Advanced Settings Editor → Keyboard Shortcuts.
+3. Add keybindings for the provided commands. For example:
+
+```json
+{
+  "shortcuts": [
+    {
+      "command": "jupyterlab-expand-selection:expand-selection",
+      "keys": ["Ctrl Alt Space"],
+      "selector": ".jp-Notebook .cm-content"
+    },
+    {
+      "command": "jupyterlab-expand-selection:shrink-selection",
+      "keys": ["Ctrl Alt Shift Space"],
+      "selector": ".jp-Notebook .cm-content"
+    },
+    {
+      "command": "jupyterlab-expand-selection:swap-anchor-head",
+      "keys": ["Ctrl T"],
+      "selector": ".jp-Notebook .cm-content"
+    },
+  ]
+}
+```
+
 ## Requirements
 
 - JupyterLab >= 4.0.0
@@ -82,3 +127,7 @@ folder is located. Then you can remove the symlink named `jupyterlab-expand-sele
 ### Packaging the extension
 
 See [RELEASE](RELEASE.md)
+
+## License
+
+BSD 3-Clause License
