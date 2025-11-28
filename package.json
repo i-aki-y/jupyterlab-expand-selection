@@ -7,9 +7,9 @@
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "",
+    "homepage": "https://github.com/i-aki-y/jupyterlab-expand-selection",
     "bugs": {
-        "url": "/issues"
+        "url": "https://github.com/i-aki-y/jupyterlab-expand-selection/issues"
     },
     "license": "BSD-3-Clause",
     "author": {
