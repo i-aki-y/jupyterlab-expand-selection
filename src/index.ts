@@ -36,9 +36,10 @@ const plugin: JupyterFrontEndPlugin<void> = {
     registry.addExtension(
       Object.freeze({
         name: 'jupyterlab-expand-selection:expand-selection-extension',
+        default: { cyclic: true },
         factory: () =>
-          EditorExtensionRegistry.createConfigurableExtension(
-            () => expandSelectionExtension
+          EditorExtensionRegistry.createConfigurableExtension((cfg: any) =>
+            expandSelectionExtension(cfg)
           )
       })
     );

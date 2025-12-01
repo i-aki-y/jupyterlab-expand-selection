@@ -2934,15 +2934,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codemirror-expand-selection@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "codemirror-expand-selection@npm:0.1.3"
+"codemirror-expand-selection@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "codemirror-expand-selection@npm:0.2.1"
   peerDependencies:
     "@codemirror/language": ^6.11.3
     "@codemirror/state": ^6.5.2
     "@codemirror/view": ^6.38.8
     "@lezer/common": ^1.3.0
-  checksum: a0d4cd029e7c2a4b022805bd6f45932661ab67e2c362b3db6601422e3b3f23e3f534eba3978c4c296d3c9426c860cb5c26be2f546453f4ab04bc687c3e006375
+  checksum: 11adcef347bfaa794fe3f12e7050cffcbd3e6a315dfbb19d8be589d4f0a31244be956001fcbcf9f55da503a40672ba07c46ba3ed04e123528ef858e41350018e
   languageName: node
   linkType: hard
 
@@ -5127,7 +5127,7 @@ __metadata:
     "@types/react-addons-linked-state-mixin": ^0.14.22
     "@typescript-eslint/eslint-plugin": ^6.1.0
     "@typescript-eslint/parser": ^6.1.0
-    codemirror-expand-selection: ^0.1.3
+    codemirror-expand-selection: ^0.2.1
     css-loader: ^6.7.1
     eslint: ^8.36.0
     eslint-config-prettier: ^8.8.0
