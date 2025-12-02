@@ -2,7 +2,9 @@ import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
-import { INotebookTracker } from '@jupyterlab/notebook';
+import { INotebookTracker, NotebookPanel } from '@jupyterlab/notebook';
+import { IEditorTracker, FileEditor } from '@jupyterlab/fileeditor';
+import { IDocumentWidget } from '@jupyterlab/docregistry';
 import {
   CodeMirrorEditor,
   IEditorExtensionRegistry,
@@ -16,6 +18,37 @@ import {
   swapAnchorHead
 } from 'codemirror-expand-selection';
 
+function getActiveCodeMirrorEditor(
+  app: JupyterFrontEnd,
+  notebookTracker: INotebookTracker,
+  editorTracker: IEditorTracker
+): CodeMirrorEditor | null {
+  let cm: CodeMirrorEditor | null = null;
+
+  const widget = app.shell.currentWidget;
+  if (!widget) {
+    console.log('No widget');
+    return cm;
+  }
+
+  if (notebookTracker.has(widget)) {
+    // Notebook
+    const panel = widget as NotebookPanel;
+    const cell = panel.content.activeCell;
+    if (cell && cell.editor instanceof CodeMirrorEditor) {
+      cm = cell.editor as CodeMirrorEditor;
+    }
+  } else if (editorTracker.has(widget)) {
+    // Editor
+    const editorWidget = widget as IDocumentWidget<FileEditor>;
+    const editor = editorWidget.content.editor;
+    if (editor instanceof CodeMirrorEditor) {
+      cm = editor as CodeMirrorEditor;
+    }
+  }
+  return cm;
+}
+
 /**
  * Initialization data for the jupyterlab-expand-selection extension.
  */
@@ -24,10 +57,11 @@ const plugin: JupyterFrontEndPlugin<void> = {
   description:
     'A JupyterLab extension that introduces expand/shrink selection commands',
   autoStart: true,
-  requires: [INotebookTracker, IEditorExtensionRegistry],
+  requires: [INotebookTracker, IEditorTracker, IEditorExtensionRegistry],
   activate: (
     app: JupyterFrontEnd,
     notebookTracker: INotebookTracker,
+    editorTracker: IEditorTracker,
     registry: IEditorExtensionRegistry
   ) => {
     console.log(
@@ -46,16 +80,15 @@ const plugin: JupyterFrontEndPlugin<void> = {
     app.commands.addCommand('jupyterlab-expand-selection:expand-selection', {
       label: 'Expand selected region',
       execute: () => {
-        const notebook = notebookTracker.currentWidget;
-        if (!notebook) {
-          console.warn('No active notebook');
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
           return;
         }
-        const activeCell = notebook.content.activeCell;
-        if (!activeCell) {
-          return;
-        }
-        const cmEditor = activeCell.editor as CodeMirrorEditor;
         const view = cmEditor.editor as EditorView;
         expandSelection(view);
       }
@@ -64,16 +97,15 @@ const plugin: JupyterFrontEndPlugin<void> = {
     app.commands.addCommand('jupyterlab-expand-selection:shrink-selection', {
       label: 'Shrink selected region',
       execute: () => {
-        const notebook = notebookTracker.currentWidget;
-        if (!notebook) {
-          console.warn('No active notebook');
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
           return;
         }
-        const activeCell = notebook.content.activeCell;
-        if (!activeCell) {
-          return;
-        }
-        const cmEditor = activeCell.editor as CodeMirrorEditor;
         const view = cmEditor.editor as EditorView;
         shrinkSelection(view);
       }
@@ -82,16 +114,15 @@ const plugin: JupyterFrontEndPlugin<void> = {
     app.commands.addCommand('jupyterlab-expand-selection:swap-anchor-head', {
       label: 'Swap anchor and head of the selected region',
       execute: () => {
-        const notebook = notebookTracker.currentWidget;
-        if (!notebook) {
-          console.warn('No active notebook');
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
           return;
         }
-        const activeCell = notebook.content.activeCell;
-        if (!activeCell) {
-          return;
-        }
-        const cmEditor = activeCell.editor as CodeMirrorEditor;
         const view = cmEditor.editor as EditorView;
         swapAnchorHead(view);
       }

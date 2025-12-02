@@ -943,6 +943,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jupyterlab/fileeditor@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "@jupyterlab/fileeditor@npm:4.5.0"
+  dependencies:
+    "@jupyter/ydoc": ^3.1.0
+    "@jupyterlab/apputils": ^4.6.0
+    "@jupyterlab/codeeditor": ^4.5.0
+    "@jupyterlab/codemirror": ^4.5.0
+    "@jupyterlab/coreutils": ^6.5.0
+    "@jupyterlab/docregistry": ^4.5.0
+    "@jupyterlab/documentsearch": ^4.5.0
+    "@jupyterlab/lsp": ^4.5.0
+    "@jupyterlab/rendermime": ^4.5.0
+    "@jupyterlab/statusbar": ^4.5.0
+    "@jupyterlab/toc": ^6.5.0
+    "@jupyterlab/translation": ^4.5.0
+    "@jupyterlab/ui-components": ^4.5.0
+    "@lumino/commands": ^2.3.3
+    "@lumino/coreutils": ^2.2.2
+    "@lumino/messaging": ^2.0.4
+    "@lumino/widgets": ^2.7.2
+    react: ^18.2.0
+    regexp-match-indices: ^1.0.2
+  checksum: daf77980415860cc0e4595574d6ee53588b6eec4d7f6efbdd7ac714f95ac2a90d41301906f8237d6997788830ebd64b6e4a276af6bef19bad6460e87f2c001c7
+  languageName: node
+  linkType: hard
+
 "@jupyterlab/lsp@npm:^4.5.0":
   version: 4.5.0
   resolution: "@jupyterlab/lsp@npm:4.5.0"
@@ -2934,15 +2961,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codemirror-expand-selection@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "codemirror-expand-selection@npm:0.2.1"
+"codemirror-expand-selection@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "codemirror-expand-selection@npm:0.3.0"
   peerDependencies:
     "@codemirror/language": ^6.11.3
     "@codemirror/state": ^6.5.2
     "@codemirror/view": ^6.38.8
     "@lezer/common": ^1.3.0
-  checksum: 11adcef347bfaa794fe3f12e7050cffcbd3e6a315dfbb19d8be589d4f0a31244be956001fcbcf9f55da503a40672ba07c46ba3ed04e123528ef858e41350018e
+  checksum: 5d772f704f6f5390669c65b8f4c6c80346f3f56fa15cdb8454461d9f5671eae1f388ea0b04752563d81c5a295c4eb38283f7bb357544c5532649634a9d41a21c
   languageName: node
   linkType: hard
 
@@ -5121,13 +5148,15 @@ __metadata:
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/builder": ^4.0.0
     "@jupyterlab/codemirror": ^4.5.0
+    "@jupyterlab/docregistry": ^4.5.0
+    "@jupyterlab/fileeditor": ^4.5.0
     "@jupyterlab/notebook": ^4.5.0
     "@types/json-schema": ^7.0.11
     "@types/react": ^18.0.26
     "@types/react-addons-linked-state-mixin": ^0.14.22
     "@typescript-eslint/eslint-plugin": ^6.1.0
     "@typescript-eslint/parser": ^6.1.0
-    codemirror-expand-selection: ^0.2.1
+    codemirror-expand-selection: ^0.3.0
     css-loader: ^6.7.1
     eslint: ^8.36.0
     eslint-config-prettier: ^8.8.0
@@ -6242,6 +6271,24 @@ __metadata:
     indent-string: ^5.0.0
     strip-indent: ^4.0.0
   checksum: 6944e7b1d8f3fd28c2515f5c605b9f7f0ea0f4edddf41890bbbdd4d9ee35abb7540c3b278f03ff827bd278bb6ff4a5bd8692ca406b748c5c1c3ce7355e9fbf8f
+  languageName: node
+  linkType: hard
+
+"regexp-match-indices@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "regexp-match-indices@npm:1.0.2"
+  dependencies:
+    regexp-tree: ^0.1.11
+  checksum: 8cc779f6cf8f404ead828d09970a7d4bd66bd78d43ab9eb2b5e65f2ef2ba1ed53536f5b5fa839fb90b350365fb44b6a851c7f16289afc3f37789c113ab2a7916
+  languageName: node
+  linkType: hard
+
+"regexp-tree@npm:^0.1.11":
+  version: 0.1.27
+  resolution: "regexp-tree@npm:0.1.27"
+  bin:
+    regexp-tree: bin/regexp-tree
+  checksum: 129aebb34dae22d6694ab2ac328be3f99105143737528ab072ef624d599afecbcfae1f5c96a166fa9e5f64fa1ecf30b411c4691e7924c3e11bbaf1712c260c54
   languageName: node
   linkType: hard
 
