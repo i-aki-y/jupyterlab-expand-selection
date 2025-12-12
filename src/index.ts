@@ -10,7 +10,8 @@ import {
   IEditorExtensionRegistry,
   EditorExtensionRegistry
 } from '@jupyterlab/codemirror';
-import { EditorView } from '@codemirror/view';
+import { EditorView, keymap } from '@codemirror/view';
+import { Extension, Prec } from '@codemirror/state';
 import {
   cursorSubwordForward,
   cursorSubwordBackward,
@@ -75,13 +76,20 @@ const plugin: JupyterFrontEndPlugin<void> = {
     console.log(
       'JupyterLab extension jupyterlab-expand-selection is activated!'
     );
+    const overwriteKeymap = Prec.highest(
+      keymap.of([
+        { key: 'Alt-ArrowRight', run: cursorSubwordForward },
+        { key: 'Alt-ArrowLeft', run: cursorSubwordBackward }
+      ])
+    );
     registry.addExtension(
       Object.freeze({
         name: 'jupyterlab-expand-selection:expand-selection-extension',
         default: { cyclic: true },
         factory: () =>
-          EditorExtensionRegistry.createConfigurableExtension((cfg: any) =>
-            expandSelectionExtension(cfg)
+          EditorExtensionRegistry.createConfigurableExtension(
+            (cfg: any) =>
+              [expandSelectionExtension(cfg), overwriteKeymap] as Extension
           )
       })
     );
