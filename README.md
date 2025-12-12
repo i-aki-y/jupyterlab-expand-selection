@@ -20,7 +20,6 @@ This extension adds the following commands, configurable via JupyterLab's **Adva
 - `jupyterlab-expand-selection:swap-anchor-head`
   Swap the anchor and head of the current selection.
 
-
 ## Usage
 
 1. Open JupyterLab.
@@ -44,7 +43,7 @@ This extension adds the following commands, configurable via JupyterLab's **Adva
       "command": "jupyterlab-expand-selection:swap-anchor-head",
       "keys": ["Ctrl T"],
       "selector": ".jp-Notebook .cm-content"
-    },
+    }
   ]
 }
 ```

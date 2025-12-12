@@ -12,6 +12,14 @@ import {
 } from '@jupyterlab/codemirror';
 import { EditorView } from '@codemirror/view';
 import {
+  cursorSubwordForward,
+  cursorSubwordBackward,
+  cursorSyntaxLeft,
+  cursorSyntaxRight,
+  cursorGroupForward,
+  cursorGroupBackward
+} from '@codemirror/commands';
+import {
   expandSelectionExtension,
   expandSelection,
   shrinkSelection,
@@ -125,6 +133,108 @@ const plugin: JupyterFrontEndPlugin<void> = {
         }
         const view = cmEditor.editor as EditorView;
         swapAnchorHead(view);
+      }
+    });
+
+    app.commands.addCommand('jupyterlab-expand-selection:subword-forward', {
+      label: 'wrapper of codemirror cursorSubwordForward command',
+      execute: () => {
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
+          return;
+        }
+        const view = cmEditor.editor as EditorView;
+        cursorSubwordForward(view);
+      }
+    });
+
+    app.commands.addCommand('jupyterlab-expand-selection:subword-backward', {
+      label: 'Wrapper of codemirror cursorSubwordBackward command',
+      execute: () => {
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
+          return;
+        }
+        const view = cmEditor.editor as EditorView;
+        cursorSubwordBackward(view);
+      }
+    });
+
+    app.commands.addCommand('jupyterlab-expand-selection:syntax-right', {
+      label: 'wrapper of codemirror cursorSyntaxRight command',
+      execute: () => {
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
+          return;
+        }
+        const view = cmEditor.editor as EditorView;
+        cursorSyntaxRight(view);
+      }
+    });
+
+    app.commands.addCommand('jupyterlab-expand-selection:syntax-left', {
+      label: 'Wrapper of codemirror cursorSyntaxLeft command',
+      execute: () => {
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
+          return;
+        }
+        const view = cmEditor.editor as EditorView;
+        cursorSyntaxLeft(view);
+      }
+    });
+
+    app.commands.addCommand('jupyterlab-expand-selection:group-forward', {
+      label: 'Wrapper of codemirror cursorGroupForward command',
+      execute: () => {
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
+          return;
+        }
+        const view = cmEditor.editor as EditorView;
+        cursorGroupForward(view);
+      }
+    });
+
+    app.commands.addCommand('jupyterlab-expand-selection:group-backward', {
+      label: 'Wrapper of codemirror cursorGroupBackward command',
+      execute: () => {
+        const cmEditor = getActiveCodeMirrorEditor(
+          app,
+          notebookTracker,
+          editorTracker
+        );
+        if (!cmEditor) {
+          console.warn('No active editor');
+          return;
+        }
+        const view = cmEditor.editor as EditorView;
+        cursorGroupBackward(view);
       }
     });
   }
